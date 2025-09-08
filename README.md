@@ -4,4 +4,4 @@
 Этот репозиторий является каркасом для будущего веб-приложения.
 
 ## Ссылки
-- [Публичная страница на GitHub Pages](https://Hehekutov.github.io/firstprac/)
+- [Публичная страница на GitHub Pages](https://Hehekutov.github.io/firstpractic/)

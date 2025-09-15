@@ -11,18 +11,17 @@
 </head>
 <body>
     <!-- Шапка сайта -->
-    <header>
-        <a href="/">Логотип или название сайта</a>
-        <!-- Главное меню навигации -->
-        <nav>
-            <ul>
-                <li><a href="index.html">Главная</a></li>
-                <li><a href="about.html">О нас</a></li>
-                <li><a href="contacts.html">Контакты</a></li>
+    <header class="site-header">
+        <a class="site-header__brand" href="/">Лого</a>
+        <nav class="site-nav" aria-label="Основная навигация">
+            <ul class="site-nav__list">
+                <li class="site-nav__item"><a class="site-nav__link" href="index.html">Главная</a></li>
+                <li class="site-nav__item"><a class="site-nav__link" href="about.html">О нас</a></li>
+                <li class="site-nav__item"><a class="site-nav__link site-nav__link--
+    cta" href="#contacts">Связаться</a></li>
             </ul>
         </nav>
     </header>
-
     <!-- Уникальное основное содержимое страницы -->
     <main>
         <!-- Кнопка открытия модалки -->
@@ -76,7 +75,27 @@
             <p>Наши контакты...</p>
             <a href="contacts.html">Подробнее</a> <!-- Ссылка на отдельную страницу -->
         </section>
-    </main>
+        <button class="theme-toggle" type="button" aria-pressed="false">Тема</button>
+<script defer>
+    const KEY = 'theme', btn = document.querySelector('.theme-toggle');
+    const prefersDark = matchMedia('(prefers-color-scheme: dark)').matches;
+    // Автовыбор: системная тема или сохранённый выбор пользователя
+    if (localStorage.getItem(KEY) === 'dark' || (!localStorage.getItem(KEY) &&
+        prefersDark)) {
+        document.body.classList.add('theme-dark');
+        btn?.setAttribute('aria-pressed', 'true');
+    }
+    // Переключение по кнопке с сохранением в localStorage
+    btn?.addEventListener('click', () => {
+        const isDark = document.body.classList.toggle('theme-dark');
+        btn.setAttribute('aria-pressed', String(isDark));
+        localStorage.setItem(KEY, isDark ? 'dark' : 'light');
+    });
+</script>
+<!-- width/height уменьшают «скачок» макета (CLS); alt обязателен -->
+<img src="../assets/card-640.png" alt="Проект: макет мобильного приложения" width="640" height="360" loading="lazy"
+    decoding="async">
+</main>
 
     <!-- Подвал сайта -->
     <footer>

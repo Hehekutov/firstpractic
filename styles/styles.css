@@ -4,7 +4,7 @@
     --color-fg: #0b0b0b;
     --color-muted: #666;
     --color-primary: #0a84ff;
-    --color-danger: #b00020;
+    --color-danger: #d00026;
     /* Типографика и размеры */
     --font-body: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
     --space-1: 4px;
@@ -24,3 +24,122 @@ body.theme-dark {
     --color-muted: #aaa;
     --color-primary: #6aa2ff;
 }
+/* Порядок важен: link → visited → hover → active */
+a:link {
+    color:#666;
+}
+
+a:visited {
+    color:#0b0b0b;
+}
+
+a:hover {
+    color:#859553;
+}
+
+a:active {
+    color: #956820;
+}
+/* :where(...) не добавляет специфичности — проще переопределять позже */
+:where(a, button, input, select, textarea):focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+/* Недоступные элементы визуально «приглушаем» */
+:disabled,
+[aria-disabled="true"] {
+    opacity: .6;
+    cursor: not-allowed;
+}
+html {
+    scroll-behavior: smooth;
+}
+
+/* Плавная прокрутка к #якорю */
+:target {
+    outline: 2px dashed var(--color-primary);
+    outline-offset: 4px;
+}
+
+/*
+Подсветка цели */
+/* Reset-минимум — подробнее в 1.8 */
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-body);
+    line-height: 1.5;
+}
+/* Центровка и ограничение ширины контейнера */
+.container {
+    width: min(100% - 2*var(--space-4), 1120px);
+    margin-inline: auto;
+}
+
+/* Вертикальные отступы секций по токенам */
+.section {
+    padding-block: var(--space-5);
+}
+
+.section__title {
+    margin: 0 0 var(--space-3);
+}
+/* Антипаттерн: селектор тяжёлый и хрупкий */
+#header .menu .item a {
+    color: #333;
+}
+
+/* Хорошо: опора на БЭМ-класс компонента */
+.site-nav__link {
+    color: var(--color-fg);
+}
+* {
+    box-sizing: border-box;
+}
+
+/* Проще считать ширины/высоты */
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* Убираем стартовые отступы браузера */
+/* Медиа не «выпрыгивают» из контейнеров */
+img,
+video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Форм-контролы наследуют шрифт и цвет */
+button,
+input,
+select,
+textarea {
+    font: inherit;
+    color: inherit;
+}
+:root {
+    color-scheme: light;
+}
+
+/* Светлые скроллбары/контролы по
+умолчанию */
+body.theme-dark {
+    color-scheme: dark;
+}
+
+/* Тёмные — при активной теме */
